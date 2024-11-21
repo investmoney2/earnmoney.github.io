@@ -234,7 +234,7 @@
             if (userExists) {
                 alert("User already exists.");
             } else {
-                const newUser = { email, password, balance: 0, cryptoAddress: null }; // Default balance
+                const newUser = { email, password, balance: 1000, cryptoAddress: null }; // Default balance
                 users.push(newUser);
                 alert("Registration successful! You can now login.");
                 toggleForm();
