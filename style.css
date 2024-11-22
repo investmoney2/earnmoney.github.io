@@ -1,0 +1,160 @@
+/* Genel Sayfa Stili */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0D1117;
+    color: #ffffff;
+}
+
+/* Üst Menü */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #161B22;
+}
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00FF85;
+}
+.navbar a {
+    text-decoration: none;
+    margin-left: 20px;
+    color: #ffffff;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.navbar a:hover {
+    color: #00FF85;
+}
+.navbar .contact-link {
+    margin-left: 20px;
+    color: #ffffff;
+    font-size: 16px;
+}       
+.navbar .contact-link:hover {
+    color: #00FF85;
+}
+
+.btn-register {
+    padding: 10px 20px;
+    background-color: #00FF85;
+    border-radius: 5px;
+    color: #161B22;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.btn-register:hover {
+    background-color: #00CC6A;
+}
+
+/* Ana Başlık ve Bilgiler */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+}
+.hero h1 {
+    font-size: 36px;
+    color: #00FF85;
+    margin-bottom: 20px;
+}
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+.stat {
+    text-align: center;
+}
+.stat h3 {
+    font-size: 24px;
+    color: #00FF85;
+    margin-bottom: 10px;
+}
+
+/* Kayıt Modalı */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #00FF85;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+}
+input[type="submit"]:hover {
+    background-color: #00CC6A;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+.success-message {
+    color: green;
+    font-weight: bold;
+}
+
+.btn-service {
+    background-color: #00FF85;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #161B22;
+    font-weight: bold;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+}
+.btn-service:hover {
+    background-color: #00CC6A;
+}
+
+.btn-logout {
+    background-color: #ff0000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #161B22;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+.btn-logout:hover {
+    background-color: #e60000;
+}
+
+/* Modal İçeriği */
+.modal-content p {
+    margin-bottom: 20px;
+}
