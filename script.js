@@ -78,7 +78,7 @@ startButton.addEventListener('click', () => {
     if (Math.random() < 0.01 * multiplier) {
       endGame(false, betAmount);
     }
-  }, 100);
+  }, 1000);
 });
 
 cashoutButton.addEventListener('click', () => {
