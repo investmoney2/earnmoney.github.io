@@ -1,4 +1,4 @@
-let balance = 100;
+let balance = 1000;
 let multiplier = 1.00;
 let gameRunning = false;
 let interval;
