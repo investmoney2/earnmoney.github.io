@@ -1,0 +1,166 @@
+#telegram-contact {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+#telegram-contact img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#telegram-contact img:hover {
+  transform: scale(1.1);
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #8B0000, #B22222); /* Kırmızı-siyah geçiş */
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#left-container, #right-container {
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.6); /* Yarı saydam siyah */
+}
+
+#left-container {
+  width: 70%;
+}
+
+#right-container {
+  width: 25%;
+}
+
+.plane {
+  font-size: 40px;
+  margin-top: 20px;
+  animation: fly 1s infinite alternate;
+}
+
+@keyframes fly {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+#multiplier {
+  font-size: 40px;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+button {
+  background-color: #FF4500; /* Turuncu kırmızı */
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #FF6347; /* Daha açık turuncu */
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+#balance {
+  font-size: 20px;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#history {
+  margin-top: 20px;
+  text-align: left;
+}
+
+#message {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: none;
+}
+
+.success {
+  background-color: rgba(50, 205, 50, 0.8); /* Yeşil başarı mesajı */
+}
+
+.error {
+  background-color: rgba(255, 69, 0, 0.8); /* Kırmızı hata mesajı */
+}
+
+#deposit-modal, #withdraw-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+#deposit-modal button, #withdraw-modal button {
+  background-color: #FF6347; /* Açık turuncu kırmızı */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#deposit-modal button:hover, #withdraw-modal button:hover {
+  background-color: #FF4500; /* Daha koyu turuncu kırmızı */
+}
+
+#withdraw-modal input {
+  width: 250px;
+}
