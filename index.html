@@ -274,11 +274,25 @@ const closeDepositModalButton = document.getElementById('close-deposit-modal');
 const closeWithdrawModalButton = document.getElementById('close-withdraw-modal');
 const confirmWithdrawButton = document.getElementById('confirm-withdraw-btn');
 
+// LocalStorage'tan bakiye okuma
+function loadBalance() {
+  const storedBalance = localStorage.getItem('balance');
+  if (storedBalance) {
+    balance = parseFloat(storedBalance);  // LocalStorage'tan alınan veriyi float'a çevir
+  } else {
+    balance = 1000;  // Eğer localStorage'ta veri yoksa, başlangıç değeri 0 olsun
+  }
+  balanceDisplay.textContent = `Balance: $${balance.toFixed(2)}`;  // Ekranda bakiyeyi göster
+}
+
+// Bakiye güncelleme fonksiyonu
 function updateBalance(amount) {
   balance += amount;
   balanceDisplay.textContent = `Balance: $${balance.toFixed(2)}`;
+  localStorage.setItem('balance', balance.toFixed(2));  // Yeni bakiyeyi localStorage'a kaydet
 }
 
+// Mesaj göstermek için fonksiyon
 function showMessage(message, type) {
   messageDisplay.textContent = message;
   messageDisplay.className = type;
@@ -288,6 +302,7 @@ function showMessage(message, type) {
   }, 3000);
 }
 
+// Geçmişi güncelleme
 function addToHistory(bet, multiplier, result) {
   if (gameHistory.length >= maxHistory) {
     gameHistory.shift();
@@ -305,15 +320,20 @@ function updateHistoryTable() {
   });
 }
 
+// Sayfa yüklendiğinde bakiye yüklenmesi
+window.onload = function() {
+  loadBalance();  // Bakiye localStorage'tan yüklenir
+}
+
 startButton.addEventListener('click', () => {
   const betAmount = parseFloat(betInput.value);
-  if (isNaN(betAmount) || betAmount < 0.2 || betAmount > balance) {
+  if (isNaN(betAmount) || betAmount < 1 || betAmount > balance) {
     showMessage("Invalid bet amount.", 'error');
     return;
   }
   if (gameRunning) return;
 
-  updateBalance(-betAmount);
+  updateBalance(-betAmount);  // Bakiyeden düşme
   multiplier = 1.00;
   multiplierDisplay.textContent = `${multiplier.toFixed(2)}x`;
   resultDisplay.textContent = '';
@@ -321,27 +341,22 @@ startButton.addEventListener('click', () => {
   startButton.disabled = true;
   cashoutButton.disabled = false;
   
-  // Uçak animasyonu için konum bilgisi
-  let planePosition = 0; // Başlangıç pozisyonu
-  planeElement.style.transform = `translateY(${planePosition}px)`; // Uçak başlangıç pozisyonunda
+  let planePosition = 0;  // Uçak başlangıç pozisyonu
+  planeElement.style.transform = `translateY(${planePosition}px)`;  // Uçak başlangıç pozisyonunda
 
   interval = setInterval(() => {
     multiplier += 0.01;  // Multiplier artacak
-    planePosition += 2 * multiplier;  // Uçak her artan multiplier ile daha hızlı yükselecek
+    planePosition += 2 * multiplier;  // Uçak hızlanacak
 
-    // Uçak pozisyonunu güncelle
-    planeElement.style.transform = `translateY(-${planePosition}px)`;  // Yüksekliğe göre pozisyon
+    planeElement.style.transform = `translateY(-${planePosition}px)`;  // Uçak yüksekliği
 
-    // Multiplier'ı güncelle
     multiplierDisplay.textContent = `${multiplier.toFixed(2)}x`;
 
-    // Eğer uçağın multiplier'ı %1'lik bir olasılıkla sona ererse
     if (Math.random() < 0.01 * multiplier) {
-      endGame(false, betAmount);
+      endGame(false, betAmount);  // Uçak patladı
     }
 
-    // Uçak çok yüksek bir seviyeye ulaşırsa (örneğin 2000px) patlasın
-    if (planePosition > 2000) {  // Uçak 2000px'e ulaştığında patlayacak
+    if (planePosition > 2000) {  // Uçak çok yüksek olursa patlasın
       endGame(false, betAmount);
     }
   }, 100);
@@ -352,7 +367,7 @@ cashoutButton.addEventListener('click', () => {
 
   const betAmount = parseFloat(betInput.value);
   const winnings = betAmount * multiplier;
-  endGame(true, winnings);
+  endGame(true, winnings);  // Oyunu bitir
 });
 
 function endGame(cashedOut, amount) {
@@ -362,7 +377,7 @@ function endGame(cashedOut, amount) {
   cashoutButton.disabled = true;
 
   if (cashedOut) {
-    updateBalance(amount);
+    updateBalance(amount);  // Kazanılan miktar bakiyeye eklenir
     addToHistory(amount / multiplier, multiplier, `Won $${amount.toFixed(2)}`);
     showMessage(`Cashed out at ${multiplier.toFixed(2)}x! Won $${amount.toFixed(2)}!`, 'success');
   } else {
@@ -371,6 +386,7 @@ function endGame(cashedOut, amount) {
   }
 }
 
+// Deposit işlemi
 depositButton.addEventListener('click', () => {
   depositModal.style.display = 'block';
 });
@@ -396,10 +412,11 @@ confirmWithdrawButton.addEventListener('click', () => {
     return;
   }
 
-  updateBalance(-withdrawAmount);
+  updateBalance(-withdrawAmount);  // Çekilen miktar bakiyeden düşer
   showMessage(`Withdrawn $${withdrawAmount.toFixed(2)} to ${withdrawAddress}!`, 'success');
   withdrawModal.style.display = 'none';
 });
+
 
   </script>
 </body>
