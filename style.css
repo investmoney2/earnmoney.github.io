@@ -1,4 +1,3 @@
-/* Telegram Contact */
 #telegram-contact {
   position: fixed;
   bottom: 20px;
@@ -18,10 +17,9 @@
   transform: scale(1.1);
 }
 
-/* Body */
 body {
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom, #8B0000, #B22222);
+  background: linear-gradient(to bottom, #8B0000, #B22222); /* Kırmızı-siyah geçiş */
   color: white;
   margin: 0;
   padding: 0;
@@ -35,13 +33,12 @@ h1 {
   margin: 20px 0;
 }
 
-/* Containers */
 #left-container, #right-container {
   padding: 20px;
   border-radius: 10px;
   margin: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6); /* Yarı saydam siyah */
 }
 
 #left-container {
@@ -52,7 +49,6 @@ h1 {
   width: 25%;
 }
 
-/* Plane Animation */
 .plane {
   font-size: 40px;
   margin-top: 20px;
@@ -64,16 +60,14 @@ h1 {
   to { transform: translateY(-10px); }
 }
 
-/* Multiplier */
 #multiplier {
   font-size: 40px;
   margin: 20px 0;
   font-weight: bold;
 }
 
-/* Buttons */
 button {
-  background-color: #FF4500;
+  background-color: #FF4500; /* Turuncu kırmızı */
   border: none;
   padding: 10px 20px;
   font-size: 18px;
@@ -84,7 +78,7 @@ button {
 }
 
 button:hover {
-  background-color: #FF6347;
+  background-color: #FF6347; /* Daha açık turuncu */
 }
 
 button:disabled {
@@ -92,14 +86,12 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Balance */
 #balance {
   font-size: 20px;
   margin: 20px 0;
   font-weight: bold;
 }
 
-/* Input */
 input {
   padding: 10px;
   border: 1px solid #ccc;
@@ -108,7 +100,6 @@ input {
   text-align: center;
 }
 
-/* History Table */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -126,7 +117,6 @@ th, td {
   text-align: left;
 }
 
-/* Messages */
 #message {
   margin-top: 20px;
   padding: 10px;
@@ -136,14 +126,13 @@ th, td {
 }
 
 .success {
-  background-color: rgba(50, 205, 50, 0.8);
+  background-color: rgba(50, 205, 50, 0.8); /* Yeşil başarı mesajı */
 }
 
 .error {
-  background-color: rgba(255, 69, 0, 0.8);
+  background-color: rgba(255, 69, 0, 0.8); /* Kırmızı hata mesajı */
 }
 
-/* Modals */
 #deposit-modal, #withdraw-modal {
   display: none;
   position: fixed;
@@ -159,7 +148,7 @@ th, td {
 }
 
 #deposit-modal button, #withdraw-modal button {
-  background-color: #FF6347;
+  background-color: #FF6347; /* Açık turuncu kırmızı */
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -169,7 +158,7 @@ th, td {
 }
 
 #deposit-modal button:hover, #withdraw-modal button:hover {
-  background-color: #FF4500;
+  background-color: #FF4500; /* Daha koyu turuncu kırmızı */
 }
 
 #withdraw-modal input {
