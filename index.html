@@ -184,9 +184,9 @@ th, td {
 
   <div id="left-container">
     <h1>Fly Up Game</h1>
-    <div id="balance">Balance: $0</div>
+    <div id="balance">Balance: $1</div>
     <label for="bet-input">Bet Amount: </label>
-    <input id="bet-input" type="number" min="5" max="100" value="10">
+    <input id="bet-input" type="number" min="0.2" max="100" value="10">
     <div class="plane">✈️</div>
     <div id="multiplier">1.00x</div>
     <button id="start-btn">Start</button>
@@ -247,7 +247,7 @@ th, td {
 
 
   <script>
-    let balance = 0;
+    let balance = 1;
 let multiplier = 1.00;
 let gameRunning = false;
 let interval;
