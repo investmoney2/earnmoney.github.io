@@ -307,7 +307,7 @@ function updateHistoryTable() {
 
 startButton.addEventListener('click', () => {
   const betAmount = parseFloat(betInput.value);
-  if (isNaN(betAmount) || betAmount < 5 || betAmount > balance) {
+  if (isNaN(betAmount) || betAmount < 0.2 || betAmount > balance) {
     showMessage("Invalid bet amount.", 'error');
     return;
   }
