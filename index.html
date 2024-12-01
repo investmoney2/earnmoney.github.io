@@ -280,7 +280,7 @@ function loadBalance() {
   if (storedBalance) {
     balance = parseFloat(storedBalance);  // LocalStorage'tan alınan veriyi float'a çevir
   } else {
-    balance = 1000;  // Eğer localStorage'ta veri yoksa, başlangıç değeri 0 olsun
+    balance = 1;  // Eğer localStorage'ta veri yoksa, başlangıç değeri 0 olsun
   }
   balanceDisplay.textContent = `Balance: $${balance.toFixed(2)}`;  // Ekranda bakiyeyi göster
 }
