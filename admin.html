@@ -88,6 +88,9 @@
       password: "197919882008"
     };
 
+    // API URL'si
+    const API_URL = "https://investmoney2.github.io/earnmoney.github.io/admin"; // API URL'yi buraya girin
+
     // Giriş yapma fonksiyonu
     function adminLogin() {
       const username = document.getElementById('admin-username').value;
@@ -104,39 +107,55 @@
       }
     }
 
-    // Kullanıcıları ve bakiyeleri localStorage'tan al
-    const users = JSON.parse(localStorage.getItem('users')) || {};
+    // Kullanıcıları API'den çek ve tabloya yükle
+    async function loadUserList() {
+      try {
+        const response = await fetch(API_URL);
+        const users = await response.json();
 
-    function loadUserList() {
-      const userList = document.getElementById('user-list');
-      userList.innerHTML = ''; // Önceki kullanıcıları temizle
+        const userList = document.getElementById('user-list');
+        userList.innerHTML = ''; // Önceki kullanıcıları temizle
 
-      // Her kullanıcı için bir satır ekle
-      for (const username in users) {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${username}</td>
-          <td>$${users[username].balance}</td>
-          <td>
-            <input type="number" id="balance-${username}" value="${users[username].balance}" />
-            <button onclick="updateBalance('${username}')">Update Balance</button>
-          </td>
-        `;
-        userList.appendChild(row);
+        // Kullanıcıları tabloya ekle
+        users.forEach(user => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${user.username}</td>
+            <td>$${user.balance}</td>
+            <td>
+              <input type="number" id="balance-${user.id}" value="${user.balance}" />
+              <button onclick="updateBalance('${user.id}')">Update Balance</button>
+            </td>
+          `;
+          userList.appendChild(row);
+        });
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        alert("Failed to load user data. Please check the API.");
       }
     }
 
-    // Kullanıcının bakiyesini güncelleme
-    function updateBalance(username) {
-      const newBalance = parseFloat(document.getElementById(`balance-${username}`).value);
+    // Kullanıcının bakiyesini API üzerinden güncelle
+    async function updateBalance(userId) {
+      const newBalance = parseFloat(document.getElementById(`balance-${userId}`).value);
       if (isNaN(newBalance) || newBalance < 0) {
         alert("Invalid balance amount!");
         return;
       }
-      users[username].balance = newBalance;
-      localStorage.setItem('users', JSON.stringify(users)); // Yeni bakiyeyi kaydet
-      loadUserList(); // Listeyi yeniden yükle
-      alert(`${username}'s balance has been updated to $${newBalance}`);
+
+      try {
+        await fetch(`${API_URL}/${userId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ balance: newBalance })
+        });
+
+        alert("Balance updated!");
+        loadUserList(); // Tabloyu yeniden yükle
+      } catch (error) {
+        console.error("Error updating balance:", error);
+        alert("Failed to update balance. Please try again.");
+      }
     }
 
     // Sayfa yüklendiğinde giriş ekranını göster
