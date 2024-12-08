@@ -37,7 +37,7 @@ document.getElementById('register-btn').addEventListener('click', () => {
     return;
   }
 
-  users[username] = { password, balance: 1000 };
+  users[username] = { password, balance: 1 };
   localStorage.setItem('users', JSON.stringify(users));
   showAuthMessage('Registration successful! Please log in.');
   document.getElementById('register-form').style.display = 'none';
@@ -62,7 +62,7 @@ document.getElementById('login-btn').addEventListener('click', () => {
 });
 
 // Oyuna ait değişkenler
-let balance = 1500;
+let balance = 1;
 let multiplier = 1.0;
 let gameRunning = false;
 let interval;
