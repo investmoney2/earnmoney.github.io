@@ -250,7 +250,7 @@ th, td {
 
   <div id="left-container">
     <h1>Fly Up Game</h1>
-    <div id="balance">Balance: $1500</div>
+    <div id="balance">Balance: $1</div>
     <label for="bet-input">Bet Amount: </label>
     <input id="bet-input" type="number" min="0.2" max="100" value="10">
     <div class="plane">✈️</div>
@@ -312,7 +312,7 @@ th, td {
 </div>
 
 <script>
-  let balance = 1500;
+  let balance = 1;
 let multiplier = 1.00;
 let gameRunning = false;
 let interval;
@@ -378,7 +378,7 @@ document.getElementById('register-btn').addEventListener('click', () => {
     return;
   }
 
-  users[username] = { password, balance: 1000 }; // Yeni kullanıcı ekleniyor, başlangıç bakiyesi: 1000
+  users[username] = { password, balance: 1 }; // Yeni kullanıcı ekleniyor, başlangıç bakiyesi: 1000
   localStorage.setItem('users', JSON.stringify(users));
   showAuthMessage('Registration successful! Please log in.');
   document.getElementById('register-form').style.display = 'none';
