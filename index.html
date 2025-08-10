@@ -1,54 +1,121 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zihin Okuyucu</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        button {
-            font-size: 20px;
-            padding: 15px 30px;
-            border: none;
-            background-color: #008CBA;
-            color: white;
-            cursor: pointer;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #005f73;
-        }
-    </style>
-</head>
-<body>
-    <h2>Selam, ben zihin okuyucu. Senin hakkında çok şey biliyorum.</h2>
-    <h3>İstersen başlayalım.</h3>
-    <button onclick="nextStep()">Başlayalım</button>
-    
-    <script>
-        let steps = ["Adın: Fidan", "Soyadın: Gozelova", "Nefret ettiğin şey: Butona basarak gor"];
-        let index = 0;
-        function nextStep() {
-            if (index < steps.length) {
-                document.querySelector("h3").innerText = steps[index];
-                index++;
-            } else {
-                document.querySelector("button").innerText = "Devam Et";
-                document.querySelector("button").setAttribute("onclick", "redirectToYoutube()");
-            }
-        }
-        function redirectToYoutube() {
-            window.location.href = "https://www.youtube.com/watch?v=CQ_AtLVs3iY";
-        }
-    </script>
-</body>
-</html>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">SY</div>
+        <div>
+          <h1>SimYatırım</h1>
+          <p class="lead">Gerçekçi görünümlü yatırım platformu — demo. (Para girişi / gerçek ödemeler içermez)</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div id="userShort" style="display:none;align-items:center;gap:8px;color:#dff5ec"></div>
+        <button id="btnOpenAuth" class="primary">Giriş / Kayıt</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <aside>
+        <div class="card">
+          <div class="profile">
+            <div class="avatar" id="leftAvatar">U</div>
+            <div>
+              <div id="leftName">Giriş yapılmadı</div>
+              <div class="small">Hoş geldiniz</div>
+            </div>
+          </div>
+
+          <div class="stat">
+            <div class="small">Bakiye (USD)</div>
+            <strong id="leftBalance">0.00</strong>
+            <div class="small" style="margin-top:6px">Toplam Portföy Değeri: <span id="leftPortfolio">0.00</span> USD</div>
+          </div>
+
+          <div class="menu">
+            <button id="btnDeposit">Para Yatır (Simülasyon)</button>
+            <button id="btnWithdraw">Para Çek (Simülasyon)</button>
+            <button id="btnLogout" style="display:none">Çıkış</button>
+          </div>
+
+          <div sAtyle="margin-top:12px">
+            <div class="small">Kısa Bakış</div>
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <div class="card" style="padding:8px;background:var(--glass);border-radius:10px;flex:1">
+                <div class="small">Aktif Pozisyon</div>
+                <div id="leftOpen">0</div>
+              </div>
+              <div class="card" style="padding:8px;background:var(--glass);border-radius:10px;flex:1">
+                <div class="small">Top. Kar / Zarar</div>
+                <div id="leftPnl">0.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="small">Hızlı Yardım</div>
+          <ul style="color:var(--muted);font-size:13px;margin-top:8px;padding-left:18px">
+            <li>Bu sadece bir DEMO: gerçek para transferi yapmaz.</li>
+            <li>Gerçek bir yatırım platformu için sunucu, kayıt doğrulama (KYC), ödeme sağlayıcıları ve lisans gerekir.</li>
+            <li>İstersen gerçek backend ile entegrasyon için örnek API ve DB yapısı da hazırlayabilirim.</li>
+          </ul>
+        </div>
+      </aside>
+
+      <section>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="small">Pazar</div>
+              <h2 style="margin:0">Varlık Listesi</h2>
+            </div>
+            <div>
+              <button id="btnOpenInvest" class="primary">Hemen Yatır</button>
+            </div>
+          </div>
+
+          <div class="market-list" id="marketList">
+            <!-- assets inserted by JS -->
+          </div>
+
+          <div class="chart-wrap">
+            <div class="small">Portföy Grafiği</div>
+            <canvas id="portfolioChart"></canvas>
+          </div>
+
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="small">İşlem Geçmişi</div>
+              <h3 style="margin:0">Son İşlemler</h3>
+            </div>
+            <div>
+              <button id="btnClearHistory">Temizle</button>
+            </div>
+          </div>
+
+          <div class="transactions table" id="txTableWrap">
+            <table id="txTable">
+              <thead><tr><th>Tarih</th><th>Tip</th><th>Aktif</th><th>Miktar</th><th>Fiyat</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <footer>
+      © SimYatırım — Demo. Gerçek para işlemleri desteklenmez. Yasal uyumluluk ve güvenlik gereklidir.
+    </footer>
+  </div>
+
+  <!-- AUTH / INVEST MODALS -->
+  <div id="overlay" style="display:none" class="overlay">
+    <div class="modal" id="modalContent"></div>
+  </div>
